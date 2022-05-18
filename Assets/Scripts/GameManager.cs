@@ -37,16 +37,21 @@ public class GameManager : MonoBehaviour
     //Checks for checks against color king (haha funny pun)
     public bool inCheck(string color)
     {
+        //Checks every piece of opposing colors possible moves
         foreach (Piece piece in gridManager.pieces)
         {
-            foreach (Vector3 possibleMove in piece.possibleMoves)
+            if(!piece.CompareTag(color) && !piece.CompareTag("Empty"))
             {
-                if (possibleMove == gridManager.returnKingPos(color))
+                foreach (Vector3 possibleMove in piece.possibleMoves)
                 {
-                    Debug.Log("In Check");
-                    return true;
+                    if (possibleMove == gridManager.returnKingPos(color))
+                    {
+                        Debug.Log("In Check");
+                        return true;
+                    }
                 }
             }
+            
         }
         return false;
     }

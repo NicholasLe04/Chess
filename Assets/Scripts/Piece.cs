@@ -56,7 +56,7 @@ public class Piece : MonoBehaviour
         Vector3 newPosition = new Vector3(Mathf.Round(Camera.main.ScreenToWorldPoint(Input.mousePosition).x), Mathf.Round(Camera.main.ScreenToWorldPoint(Input.mousePosition).y));
 
         //If legal, move piece
-        if (verifyMove(currentPosition, newPosition))
+        if (verifyMove(currentPosition, newPosition) && isTurn())
         {
             moveScript.MovePiece(currentPosition, newPosition);
             generatePossibleMoves(); //generate moves
@@ -85,17 +85,13 @@ public class Piece : MonoBehaviour
         //Delta variables
         int deltaX = (int)(newPos.x - oldPos.x);
         int deltaY = (int)(newPos.y - oldPos.y);
-        
-        if(gameManager.inCheck("White") && gameObject.CompareTag("White"))
-        {
-            return false;
-        }
+
         /*
          * Checks if:
          *newPos in range of board
          *if its the right turn
          */
-        if ((newPos.x >= 0 && newPos.x <= 7) && (newPos.y >= 0 && newPos.y <= 7) && newPos != oldPos && ((gameManager.turn % 2 == 0 && gameObject.tag == "White") || (gameManager.turn % 2 == 1 && gameObject.tag == "Black")))
+        if ((newPos.x >= 0 && newPos.x <= 7) && (newPos.y >= 0 && newPos.y <= 7) && newPos != oldPos)
         {
             #region Pawn Move Verification
             if (gameObject.name.Contains("Pawn"))
@@ -243,7 +239,7 @@ public class Piece : MonoBehaviour
             {
                 for (int y = 0; y < 8; y++)
                 {
-                    if (verifyMove(currentPosition, new Vector3(x, y)))
+                    if (verifyMove(currentPosition, new Vector3(x, y)) && isTurn())
                     {
                         gridManager.GetTileAtPosition(new Vector3(x, y)).GetComponent<Tile>().highlight.SetActive(true);
                     }
@@ -551,6 +547,18 @@ public class Piece : MonoBehaviour
                     possibleMoves.Add(new Vector3(x, y));
                 }
             }
+        }
+    }
+
+    //Checks if it is the color's turn
+    private bool isTurn(){
+        if((gameManager.turn % 2 == 0 && gameObject.tag == "White") || (gameManager.turn % 2 == 1 && gameObject.tag == "Black"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     #endregion

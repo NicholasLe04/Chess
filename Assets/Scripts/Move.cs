@@ -58,6 +58,7 @@ public class Move : MonoBehaviour
         pieceController.moveCount++;
         //Updates piece move list
         UpdatePossibleMoves();
+        gameManager.inCheck("Black");
         //Initiates next turn
         gameManager.turn++;
     }
@@ -109,7 +110,7 @@ public class Move : MonoBehaviour
     }
 
     //Updates the possible moves for all pieces on the board
-    private void UpdatePossibleMoves()
+    public void UpdatePossibleMoves()
     {
         foreach (Piece piece in gridManager.pieces)
         {
