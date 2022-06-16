@@ -30,7 +30,6 @@ public class Move : MonoBehaviour
         if (gridManager.pieces[(int)_old.x, (int)_old.y].opposingColor(gridManager.pieces[(int)_new.x, (int)_new.y]))
         {
             Capture(_old, _new);
-            Debug.Log("Capture");
             gameManager.BoardSource.PlayOneShot(gameManager.CaptureAudio);
         }
         //Checks if new position is empty
@@ -86,7 +85,6 @@ public class Move : MonoBehaviour
         gridManager.pieces[(int)_new.x, (int)_new.y] = empty;
         gridManager.pieces[(int)_new.x, (int)_new.y] = gridManager.pieces[(int)_old.x, (int)_old.y];
         gridManager.pieces[(int)_old.x, (int)_old.y] = empty;
-        Debug.Log(gridManager.pieces[(int)_new.x, (int)_new.y]);
     }
 
     //Castling king from _old to _new

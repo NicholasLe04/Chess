@@ -56,6 +56,11 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
+    public bool inCheckmate(string color)
+    {   
+        //in prog
+    }
+
     //Return material advantages
     public int StatusEval()
     {
