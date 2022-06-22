@@ -1,4 +1,4 @@
-# Chess-Engine
+# Chess
 
 Chess and chess engine project under development
 
