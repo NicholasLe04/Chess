@@ -1,8 +1,5 @@
 # Chess
 
-Chess and chess engine project under development
-
-
 TIME LINE
 ---------
 
