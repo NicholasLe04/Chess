@@ -4,6 +4,6 @@
 
 ---
 
-##Description
+## Description
 
 This was my first project developed in Unity Game Engine and was intended to be used as a C# and Unity learning opportunity. 
